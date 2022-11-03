@@ -128,7 +128,7 @@ function hideNewCatForm() {
   newForm.classList.add('collapsed');
 }
 
-function renderKitten(url, desc, name, race) {
+function renderKitten(kittenDataList) {
   const newCat = `<li class="card">
   <article>
     <img
@@ -296,3 +296,34 @@ catList.innerHTML += renderKitten(
 );
 
 //end operaciones
+
+//objetos
+
+// Creamos objetos con los datos de los gatitos y creamos otro con los kittenData como parámetros
+
+const kittenData_1 = {
+  image: kittenImage1,
+  name: kittenName1,
+  desc: kittenDesc1,
+  race: kittenRace1,
+};
+
+const kittenData_2 = {
+  image: kittenImage2,
+  name: kittenName2,
+  desc: kittenDesc2,
+  race: kittenRace2,
+};
+
+const kittenData_3 = {
+  image: kittenImage3,
+  name: kittenName3,
+  desc: kittenDesc3,
+  race: kittenRace3,
+};
+
+const kittenDataList = {
+  cat1: kittenData_1,
+  cat2: kittenData_2,
+  cat3: kittenData_3,
+};
