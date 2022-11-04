@@ -127,7 +127,7 @@ function showNewCatForm() {
 function hideNewCatForm() {
   newForm.classList.add('collapsed');
 }
-
+ //no está definido url, no sabemos de donde coge los parametros 
 function renderKitten(kittenDataList) {
   const newCat = `<li class="card">
   <article>
@@ -322,8 +322,13 @@ const kittenData_3 = {
   race: kittenRace3,
 };
 
-const kittenDataList = {
-  cat1: kittenData_1,
-  cat2: kittenData_2,
-  cat3: kittenData_3,
-};
+const kittenDataList = [kittenData_1, kittenData_2, kittenData_3,]
+ 
+//bucles
+
+function renderKittenList (kittenDataList) {
+  catList.innerHTML ='';
+ for (catElement of kittenDataList) {
+  catElement.innerHTML += renderKitten(catElement)
+ }
+}
