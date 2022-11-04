@@ -128,18 +128,19 @@ function hideNewCatForm() {
   newForm.classList.add('collapsed');
 }
  //no está definido url, no sabemos de donde coge los parametros 
-function renderKitten(kittenDataList) {
+function renderKitten(kittenData) {
+  console.log (kittenData)
   const newCat = `<li class="card">
   <article>
     <img
       class="card_img"
-      src="${url}"
+      src="${kittenData.image}"
       alt="gatito"
     />
-    <h3 class="card_title">${name.toUpperCase()}</h3>
-    <h4 class="card_race">${race}</h4>
+    <h3 class="card_title">${kittenData.name.toUpperCase()}</h3>
+    <h4 class="card_race">${kittenData.race}</h4>
     <p class="card_description">
-      ${desc}
+      ${kittenData.desc}
     </p>
   </article>
   </li>`;
@@ -273,27 +274,9 @@ if (kittenDesc3.includes(descrSearchText)) {
 }*/
 //end búsqueda por descripción
 
+
 //Pintar todos los gatitos cuando se carga la página
-catList.innerHTML += renderKitten(
-  kittenImage1,
-  kittenDesc1,
-  kittenName1,
-  kittenRace1
-);
 
-catList.innerHTML += renderKitten(
-  kittenImage2,
-  kittenDesc2,
-  kittenName2,
-  kittenRace2
-);
-
-catList.innerHTML += renderKitten(
-  kittenImage3,
-  kittenDesc3,
-  kittenName3,
-  kittenRace3
-);
 
 //end operaciones
 
@@ -328,7 +311,9 @@ const kittenDataList = [kittenData_1, kittenData_2, kittenData_3,]
 
 function renderKittenList (kittenDataList) {
   catList.innerHTML ='';
- for (catElement of kittenDataList) {
-  catElement.innerHTML += renderKitten(catElement)
+ for (const catElement of kittenDataList) {
+  catList.innerHTML += renderKitten(catElement)
  }
 }
+
+renderKittenList(kittenDataList);
