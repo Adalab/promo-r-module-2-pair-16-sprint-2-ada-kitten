@@ -127,9 +127,9 @@ function showNewCatForm() {
 function hideNewCatForm() {
   newForm.classList.add('collapsed');
 }
- //no está definido url, no sabemos de donde coge los parametros 
+//no está definido url, no sabemos de donde coge los parametros
 function renderKitten(kittenData) {
-  console.log (kittenData)
+  console.log(kittenData);
   const newCat = `<li class="card">
   <article>
     <img
@@ -196,15 +196,33 @@ function addNewKitten(event) {
   }
 }
 //Crear un filtro por descripción para buscar gatitos que la contengan
-//1º Traer los values que hay dentro de los imputs
-//2º Escribir un condicional que me muestre todas las descripciones iguales al valor del inputSearchDesc o inputSearchRace
 
 const filterKitten = (event) => {
   event.preventDefault();
-  const inputSearchDesc = inputSearchDesc.value;
-  const inputSearchRace = inputSearchRace.value;
+  const valueDesc = inputSearchDesc.value;
+  const valueRace = inputSearchRace.value;
 
-  if (kittenDesc1.includes(inputSearchDesc)) {
+  if (valueDesc === '' || valueRace === '') {
+    labelMessageSearchError.innerHTML = 'Debe rellenar todos los valores.';
+  } else {
+    labelMessageSearchError.innerHTML = '';
+  }
+
+  const descrSearchText = inputSearchDesc.value;
+  catList.innerHTML = '';
+  for (const kittenItem of kittenDataList) {
+    console.log(kittenItem);
+    if (kittenItem.desc.includes(descrSearchText)) {
+      catList.innerHTML += renderKitten(kittenItem);
+    }
+  }
+
+  //Completa el código
+  //Comprueba si cada gatito contiene la descripción
+  //Si la contiene pintamos un gatito
+  //utilizando la función renderKitten(kittenItem)
+
+  /*if (kittenDesc1.includes(inputSearchDesc)) {
     catList.innerHTML =
       catList.innerHTML +
       renderKitten(kittenImage1, kittenDesc1, kittenName1, kittenRace1);
@@ -218,21 +236,11 @@ const filterKitten = (event) => {
     catList.innerHTML =
       catList.innerHTML +
       renderKitten(kittenImage3, kittenDesc3, kittenName3, kittenRace3);
-  }
+  }*/
 };
 
 //Ejercicio de condicionales. ¿Está vacío el campo?
-searchButton.addEventListener('click', (event) => {
-  event.preventDefault();
-  const valueDesc = inputSearchDesc.value;
-  const valueRace = inputSearchRace.value;
-
-  if (valueDesc === '' || valueRace === '') {
-    labelMessageSearchError.innerHTML = 'Debe rellenar todos los valores.';
-  } else {
-    labelMessageSearchError.innerHTML = '';
-  }
-});
+searchButton.addEventListener('click', filterKitten);
 
 if (kittenRace1 === '') {
   html = 'no se ha especificado raza';
@@ -274,9 +282,7 @@ if (kittenDesc3.includes(descrSearchText)) {
 }*/
 //end búsqueda por descripción
 
-
 //Pintar todos los gatitos cuando se carga la página
-
 
 //end operaciones
 
@@ -305,15 +311,15 @@ const kittenData_3 = {
   race: kittenRace3,
 };
 
-const kittenDataList = [kittenData_1, kittenData_2, kittenData_3,]
- 
+const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
+
 //bucles
 
-function renderKittenList (kittenDataList) {
-  catList.innerHTML ='';
- for (const catElement of kittenDataList) {
-  catList.innerHTML += renderKitten(catElement)
- }
+function renderKittenList(kittenDataList) {
+  catList.innerHTML = '';
+  for (const catElement of kittenDataList) {
+    catList.innerHTML += renderKitten(catElement);
+  }
 }
 
 renderKittenList(kittenDataList);
