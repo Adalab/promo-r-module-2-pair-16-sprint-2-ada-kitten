@@ -178,6 +178,13 @@ addButton.addEventListener('click', addNewKitten);
 
 function addNewKitten(event) {
   event.preventDefault();
+  const newKittenDataObject ={ 
+    desc: inputDesc.value,
+    name: inputName.value,
+    race: inputRace.value,
+    photo: inputPhoto.value,
+  };
+
   const valueDesc = inputDesc.value;
   const valuePhoto = inputPhoto.value;
   const valueName = inputName.value;
@@ -186,13 +193,9 @@ function addNewKitten(event) {
   if (valueDesc === '' || valuePhoto === '' || valueName === '') {
     labelMessageError.innerHTML = 'Debe rellenar todos los valores.';
   } else {
-    labelMessageError.innerHTML = '';
-    catList.innerHTML += renderKitten(
-      valuePhoto,
-      valueDesc,
-      valueName,
-      valueRace
-    );
+    labelMessageError.innerHTML = 'Mola! Un nuevo gatito en Adalab!';
+    kittenDataList.push(newKittenDataObject)
+    renderKittenList(kittenDataList);
   }
 }
 //Crear un filtro por descripción para buscar gatitos que la contengan
@@ -313,13 +316,12 @@ const kittenData_3 = {
 
 const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
 
+
 //bucles
 
 function renderKittenList(kittenDataList) {
   catList.innerHTML = '';
   for (const catElement of kittenDataList) {
     catList.innerHTML += renderKitten(catElement);
-  }
-}
-
-renderKittenList(kittenDataList);
+  }};
+  renderKittenList(kittenDataList)
